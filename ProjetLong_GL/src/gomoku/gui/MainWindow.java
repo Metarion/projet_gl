@@ -1,10 +1,12 @@
 package gomoku.gui;
 
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -75,6 +77,7 @@ public class MainWindow extends JFrame
 		ArrierePlan()
 		{
 			this.setLayout(new BorderLayout());
+			this.setLocation(0, 0);
 			this.setSize(new Dimension(MainWindow.this.getWidth(),MainWindow.this.getHeight()));
 		}
 		
@@ -83,7 +86,21 @@ public class MainWindow extends JFrame
 		{ 
 			super.paintComponent(g);
 			
-			g.drawLine(20, 20, 20, 400);
+			((Graphics2D)g).setStroke(new BasicStroke(4));
+			
+			// Bord du plateau
+			g.drawLine(19 + 5, 19, 19 + 5, this.getHeight() - 19);
+			g.drawLine(19 + 5, 19, this.getWidth() - 19 - 5, 19);
+			g.drawLine(19 + 5, this.getHeight() - 19, this.getWidth() - 19 - 5, this.getHeight() - 19);
+			g.drawLine(this.getWidth() - 19 - 5, 19, this.getWidth() - 19 - 5, this.getHeight()- 19);
+			
+			int y = this.getHeight() / 19;
+			int y2 = y;
+			for(int i = 0; i < 19 - 1; i++)
+			{
+				g.drawLine(19 + 5, y2, this.getWidth() - 19 - 5, y2);
+				y2 += y;
+			}
 	    }
 	}
 	
@@ -95,8 +112,8 @@ public class MainWindow extends JFrame
 		{
 			this.setSize(new Dimension(19,19));
 			this.setBackground(new Color(0,0,0,0));
-			//this.setBackground(Color.red);
-			//this.setBorder(BorderFactory.createLineBorder(Color.black));
+
+			this.setBorder(BorderFactory.createLineBorder(Color.black));
 			this.addMouseListener(this);
 		}
 
