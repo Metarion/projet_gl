@@ -2,7 +2,7 @@ package gomoku.regles;
 
 public interface Constantes {
 	/** constante qui va définir la taille de la grille */
-	final static int SIZE = 19;
+	final static int SIZE = 15;
 
 	/** hauteur du plateau */
 	final static int HP = SIZE*50;

@@ -53,9 +53,9 @@ public class MainWindow extends JFrame
 		gc.gridx = 0;
 		gc.gridy = 0;
 		int k = 1;
-		for(int i = 0; i < 19; i++)
+		for(int i = 0; i < Constantes.SIZE; i++)
 		{
-			for(int ii = 0; ii < 19; ii++)
+			for(int ii = 0; ii < Constantes.SIZE; ii++)
 			{
 				gc.gridx = ii;
 				gc.gridy = i;
@@ -83,26 +83,26 @@ public class MainWindow extends JFrame
 			
 			((Graphics2D)g).setStroke(new BasicStroke(2));
 			
+			int taille_celluleH = this.getHeight() / Constantes.SIZE;
+			int positionH = taille_celluleH + Constantes.SIZE;
+			
+			int taille_celluleL = this.getWidth() / Constantes.SIZE;
+			int positionL = taille_celluleH + Constantes.SIZE;
+			
 			// Bord du plateau
-			g.drawLine(19 + 2, 19, 19 + 2, this.getHeight() - 19);
-			g.drawLine(19 + 2, 19, this.getWidth() - 19 - 2, 19);
-			g.drawLine(19 + 2, this.getHeight() - 19, this.getWidth() - 19 - 2, this.getHeight() - 19);
-			g.drawLine(this.getWidth() - 19 - 2, 19, this.getWidth() - 19 - 2, this.getHeight()- 19);
+			g.drawLine(taille_celluleL / 2 + 2, taille_celluleH / 2 + 2, taille_celluleL / 2 + 2, this.getHeight() - taille_celluleH / 2 + 2); // bare vertiacale gauche
+			g.drawLine(taille_celluleL / 2 + 2, taille_celluleH / 2 + 2, this.getWidth() - taille_celluleL / 2 + 2, taille_celluleH / 2 + 2);
+			g.drawLine(taille_celluleL / 2 + 2, this.getHeight() - taille_celluleH / 2 + 2, this.getWidth() - taille_celluleL / 2 + 2, this.getHeight() - taille_celluleH / 2 + 2);
+			g.drawLine(this.getWidth() - taille_celluleL / 2 + 2, taille_celluleH / 2 + 2, this.getWidth() - taille_celluleL / 2 + 2, this.getHeight()- taille_celluleH / 2 + 2);
 			
-			int taille_celluleH = this.getHeight() / 19;
-			int positionH = taille_celluleH + 19;
-			
-			int taille_celluleL = this.getWidth() / 19;
-			int positionL = taille_celluleH + 19;
-			
-			for(int i = 0; i < Constantes.SIZE - 2; i++)
+			for(int i = 0; i < Constantes.SIZE - 2; i++) // X
 			{
-				g.drawLine(19 + 5, (i == 0 ? positionH : taille_celluleH * i + positionH + 1 ), this.getWidth() - 19 - 5, (i == 0 ? positionH : taille_celluleH * i + positionH + 1));
+				g.drawLine(taille_celluleL / 2 + 2, (i == 0 ? positionH : taille_celluleH * i + positionH + 1 ), this.getWidth() - taille_celluleL / 2 + 2, (i == 0 ? positionH : taille_celluleH * i + positionH + 1));
 			}
 			
-			for(int i = 0; i < Constantes.SIZE - 2; i++)
+			for(int i = 0; i < Constantes.SIZE - 2; i++) // Y
 			{
-				g.drawLine((i == 0 ? positionL + 8: taille_celluleL * i + positionL + 8),19, (i == 0 ? positionL + 8 : taille_celluleL * i + positionL + 8), this.getHeight() - 19);
+				g.drawLine((i == 0 ? positionL + 8: taille_celluleL * i + positionL + 8),taille_celluleL / 2 + 2, (i == 0 ? positionL + 8 : taille_celluleL * i + positionL + 8), this.getHeight() - taille_celluleL / 2 + 2);
 			}
 	    }
 	}
@@ -110,10 +110,12 @@ public class MainWindow extends JFrame
 	static class Cellule extends JPanel implements MouseListener
 	{
 		private static int tour = 0;
+		private boolean isChecked = false;
 		
 		Cellule()
 		{
 			this.setBackground(new Color(0,0,0,0));
+			this.setBorder(BorderFactory.createLineBorder(Color.black));
 			this.addMouseListener(this);
 		}
 
@@ -122,15 +124,17 @@ public class MainWindow extends JFrame
 			//System.out.println(((GridBagLayout)((JPanel)MainWindow.this.getContentPane().getComponent(0)).getLayout()).getConstraints(this).gridx);
 			//System.out.println(((GridBagLayout)((JPanel)MainWindow.this.getContentPane().getComponent(0)).getLayout()).getConstraints(this).gridy);
 			
-			Graphics g = this.getGraphics();
-			if(tour == 1)
-				g.setColor(Color.red);
-			else
-				g.setColor(Color.green);
-			g.fillOval(0, 0, this.getWidth(), this.getHeight());
-			tour = (tour == 0 ? 1 : 0);
-			
-			
+			if(!isChecked)
+			{
+				Graphics g = this.getGraphics();
+				if(tour == 1)
+					g.setColor(Color.red);
+				else
+					g.setColor(Color.green);
+				g.fillOval(0, 0, this.getWidth(), this.getHeight());
+				tour = (tour == 0 ? 1 : 0);
+				isChecked = true;
+			}
 		}
 
 		@Override
