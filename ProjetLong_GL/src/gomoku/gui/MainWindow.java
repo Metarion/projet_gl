@@ -4,21 +4,17 @@ import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
+import gomoku.regles.*;
 
 public class MainWindow extends JFrame 
 {
@@ -77,7 +73,6 @@ public class MainWindow extends JFrame
 		ArrierePlan()
 		{
 			this.setLayout(new BorderLayout());
-			this.setLocation(0, 0);
 			this.setSize(new Dimension(MainWindow.this.getWidth(),MainWindow.this.getHeight()));
 		}
 		
@@ -86,20 +81,28 @@ public class MainWindow extends JFrame
 		{ 
 			super.paintComponent(g);
 			
-			((Graphics2D)g).setStroke(new BasicStroke(4));
+			((Graphics2D)g).setStroke(new BasicStroke(2));
 			
 			// Bord du plateau
-			g.drawLine(19 + 5, 19, 19 + 5, this.getHeight() - 19);
-			g.drawLine(19 + 5, 19, this.getWidth() - 19 - 5, 19);
-			g.drawLine(19 + 5, this.getHeight() - 19, this.getWidth() - 19 - 5, this.getHeight() - 19);
-			g.drawLine(this.getWidth() - 19 - 5, 19, this.getWidth() - 19 - 5, this.getHeight()- 19);
+			g.drawLine(19 + 2, 19, 19 + 2, this.getHeight() - 19);
+			g.drawLine(19 + 2, 19, this.getWidth() - 19 - 2, 19);
+			g.drawLine(19 + 2, this.getHeight() - 19, this.getWidth() - 19 - 2, this.getHeight() - 19);
+			g.drawLine(this.getWidth() - 19 - 2, 19, this.getWidth() - 19 - 2, this.getHeight()- 19);
 			
-			int y = this.getHeight() / 19;
-			int y2 = y;
-			for(int i = 0; i < 19 - 1; i++)
+			int taille_celluleH = this.getHeight() / 19;
+			int positionH = taille_celluleH + 19;
+			
+			int taille_celluleL = this.getWidth() / 19;
+			int positionL = taille_celluleH + 19;
+			
+			for(int i = 0; i < Constantes.SIZE - 2; i++)
 			{
-				g.drawLine(19 + 5, y2, this.getWidth() - 19 - 5, y2);
-				y2 += y;
+				g.drawLine(19 + 5, (i == 0 ? positionH : taille_celluleH * i + positionH + 1 ), this.getWidth() - 19 - 5, (i == 0 ? positionH : taille_celluleH * i + positionH + 1));
+			}
+			
+			for(int i = 0; i < Constantes.SIZE - 2; i++)
+			{
+				g.drawLine((i == 0 ? positionL + 8: taille_celluleL * i + positionL + 8),19, (i == 0 ? positionL + 8 : taille_celluleL * i + positionL + 8), this.getHeight() - 19);
 			}
 	    }
 	}
@@ -110,10 +113,7 @@ public class MainWindow extends JFrame
 		
 		Cellule()
 		{
-			this.setSize(new Dimension(19,19));
 			this.setBackground(new Color(0,0,0,0));
-
-			this.setBorder(BorderFactory.createLineBorder(Color.black));
 			this.addMouseListener(this);
 		}
 
