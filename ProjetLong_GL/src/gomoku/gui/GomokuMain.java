@@ -10,10 +10,10 @@ import gomoku.regles.*;
 public class GomokuMain extends JFrame 
 {
 	// Basculer tour_joueur (Cellule) dans régles
-	public static void main(String[] args) 
+	/*public static void main(String[] args) 
 	{
 		new GomokuMain();
-	}
+	}*/
 
 	GomokuMain()
 	{	
