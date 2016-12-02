@@ -4,21 +4,27 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import gomoku.jeu.GomokuJeu;
+import gomoku.jeu.TraitementJoueur;
 import gomoku.regles.Constantes;
 
-class Cellule extends JPanel implements MouseListener
+public class Cellule extends JPanel implements MouseListener
 {
 	/** Par qu'elle joueur la cellule a était check */ 
 	private int checkBy;
 	/** Si la cellule a déjà était séléctionné par un joueur */
 	private boolean isChecked = false;
 	
-	Cellule()
+	private int cord [];
+	
+	private GomokuGui window;
+	
+	Cellule(GomokuGui window, int[] cord)
 	{
+		this.window = window;
+		this.cord = cord;
 		// Permet d'avoir un fond transparent afin de pouvoir voir la plateau à travers les cellules
 		this.setBackground(new Color(0,0,0,0));
 				
@@ -32,7 +38,7 @@ class Cellule extends JPanel implements MouseListener
 		
 		if(isChecked)
 		{
-			if(checkBy == Constantes.JOUEUR1)
+			if(checkBy == TraitementJoueur.JOUEUR1)
 			{
 				g.setColor(Color.black);
 				g.fillOval(0, 0, this.getWidth(), this.getHeight());
@@ -47,21 +53,31 @@ class Cellule extends JPanel implements MouseListener
 
 	@Override
 	public void mouseClicked(MouseEvent e) 
-	{
-		//System.out.println(((GridBagLayout)((JPanel)MainWindow.this.getContentPane().getComponent(0)).getLayout()).getConstraints(this).gridx);
-		//System.out.println(((GridBagLayout)((JPanel)MainWindow.this.getContentPane().getComponent(0)).getLayout()).getConstraints(this).gridy);
-		
-		if(!isChecked)
-		{
-			if(Constantes.JOUEUR_ACTUEL == Constantes.JOUEUR1)
-				checkBy = Constantes.JOUEUR1; // Joueur 1
+	{		
+			GomokuJeu.verificationPlacement(this);
+			/*if(TraitementJoueur.JOUEUR_ACTUEL == TraitementJoueur.JOUEUR1)
+			{
+				if(TraitementJoueur.JETON_J1 != 0)
+					TraitementJoueur.JETON_J1--;
+				checkBy = TraitementJoueur.JOUEUR1; // Joueur 1
+			}
 			else
-				checkBy = Constantes.JOUEUR2; // Joueur 2
+			{
+				if(TraitementJoueur.JETON_J2 != 0)
+					TraitementJoueur.JETON_J2--;
+				checkBy = TraitementJoueur.JOUEUR2; // Joueur 2
+			}
 			
-			Constantes.JOUEUR_ACTUEL = (Constantes.JOUEUR_ACTUEL == Constantes.JOUEUR1 ? Constantes.JOUEUR2 : Constantes.JOUEUR1);
+			window.updateValueLabel(TraitementJoueur.JOUEUR_ACTUEL);
+			
+			TraitementJoueur.JOUEUR_ACTUEL = (TraitementJoueur.JOUEUR_ACTUEL == TraitementJoueur.JOUEUR1 ? TraitementJoueur.JOUEUR2 : TraitementJoueur.JOUEUR1);
 			isChecked = true;
-			this.repaint();
-		}
+			this.repaint();*/
+	}
+	
+	public boolean isChecked()
+	{
+		return isChecked;
 	}
 
 	@Override
