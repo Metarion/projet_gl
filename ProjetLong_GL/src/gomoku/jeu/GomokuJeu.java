@@ -28,7 +28,10 @@ public class GomokuJeu
 		{
 			for(int i = -1; i < 2; i++)
 			{
-				//for
+				for(int ii = -1; ii < 2; ii++)
+				{
+					System.out.println("salut");
+				}
 			}
 		}
 		
