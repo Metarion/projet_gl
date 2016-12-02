@@ -11,8 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import gomoku.jeu.GomokuJeu;
-import gomoku.regles.Constantes;;
+import gomoku.jeu.GomokuJeu;;
 
 @SuppressWarnings("serial")
 public class Menu extends JFrame {
@@ -35,7 +34,7 @@ public class Menu extends JFrame {
 				new GomokuJeu(0);
 			}
 		});
-		JButton boutJIA = new JButton("Joueur VS Ia");
+		JButton boutJIA = new JButton("Joueur VS IA");
 		boutJIA.addActionListener(new ActionListener() {
 			
 			@Override

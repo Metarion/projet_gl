@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
 import javax.swing.JPanel;
 
 import gomoku.jeu.GomokuJeu;
@@ -54,6 +55,7 @@ public class Cellule extends JPanel implements MouseListener
 	@Override
 	public void mouseClicked(MouseEvent e) 
 	{		
+		
 			GomokuJeu.verificationPlacement(this);
 			if(TraitementJoueur.JOUEUR_ACTUEL == TraitementJoueur.JOUEUR1)
 			{
@@ -69,7 +71,7 @@ public class Cellule extends JPanel implements MouseListener
 			}
 			
 			window.updateValueLabel(TraitementJoueur.JOUEUR_ACTUEL);
-			
+
 			TraitementJoueur.JOUEUR_ACTUEL = (TraitementJoueur.JOUEUR_ACTUEL == TraitementJoueur.JOUEUR1 ? TraitementJoueur.JOUEUR2 : TraitementJoueur.JOUEUR1);
 			isChecked = true;
 			this.repaint();
