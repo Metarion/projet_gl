@@ -12,6 +12,7 @@ public class GomokuJeu
 	}*/
 	
 	private static Cellule[][] tableau_cellule;
+	public static int nbTour = 0;
 	
 	public GomokuJeu(int hia)
 	{
@@ -26,15 +27,28 @@ public class GomokuJeu
 			return false;
 		else
 		{
-			for(int i = -1; i < 2; i++)
+			if(nbTour == 0)
+				return true;
+			else
 			{
-				for(int ii = -1; ii < 2; ii++)
+				boolean ok = false;
+				for(int i = -1; i < 2; i++)
 				{
-					System.out.println("salut2");
+					for(int ii = -1; ii < 2; ii++)
+					{
+						int testX = c.getCordX() - i;
+						int testY = c.getCordY() - ii;
+						
+						if(testX >= 0 && testX < Constantes.SIZE && testY >=0 && testY < Constantes.SIZE) // Si la cellules a tester existe
+						{
+							if(tableau_cellule[testX][testY].isChecked())
+								ok = true;
+						}
+					}
 				}
+				
+				return ok;
 			}
 		}
-		
-		return true;
 	}
 }

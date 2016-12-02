@@ -5,11 +5,9 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import gomoku.jeu.TraitementJoueur;
 import gomoku.regles.Constantes;
 
@@ -18,12 +16,10 @@ public class GomokuGui extends JFrame
 	private JLabel lb_jeton_j1;
 	private JLabel lb_jeton_j2;
 	private JLabel lb_tour_joueur;
-	private int hia;
 
 	public GomokuGui(int hia)
 	{	
 		super("Gomoku");
-		this.hia=hia;
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());	
 		lb_jeton_j1 = new JLabel("Joueur 1 : " + TraitementJoueur.JETON_J1 + " jeton(s) restant");
@@ -85,19 +81,11 @@ public class GomokuGui extends JFrame
 	
 	public void updateValueLabel(int joueur)
 	{
-		if(joueur == TraitementJoueur.JOUEUR1){
+		if(joueur == TraitementJoueur.JOUEUR1)
 			lb_jeton_j1.setText("Joueur 1 : " + TraitementJoueur.JETON_J1 + " jeton(s) restant");
-		}else{
-			if(this.hia==Constantes.HUMAN){
-				lb_jeton_j2.setText("Joueur 2 : " + TraitementJoueur.JETON_J2 + " jeton(s) restant");
-			} else {
-				lb_jeton_j2.setText("Ordinateur : " + TraitementJoueur.JETON_J2 + " jeton(s) restant");
-			}
-		}
-		lb_tour_joueur.setText("Tour : joueur " + (TraitementJoueur.JOUEUR_ACTUEL == TraitementJoueur.JOUEUR1 ? TraitementJoueur.JOUEUR2 : TraitementJoueur.JOUEUR1));
-	}
-	
-	public int getHia(){
-		return this.hia;
+		else
+			lb_jeton_j2.setText("Joueur 2 : " + TraitementJoueur.JETON_J2 + " jeton(s) restant");
+		
+		lb_tour_joueur.setText("Tour joueur : " + (TraitementJoueur.JOUEUR_ACTUEL == TraitementJoueur.JOUEUR1 ? TraitementJoueur.JOUEUR2 : TraitementJoueur.JOUEUR1));
 	}
 }

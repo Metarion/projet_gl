@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import javax.swing.JPanel;
 
 import gomoku.jeu.GomokuJeu;
@@ -55,31 +54,43 @@ public class Cellule extends JPanel implements MouseListener
 	@Override
 	public void mouseClicked(MouseEvent e) 
 	{		
-		
-			GomokuJeu.verificationPlacement(this);
-			if(TraitementJoueur.JOUEUR_ACTUEL == TraitementJoueur.JOUEUR1)
+			if(GomokuJeu.verificationPlacement(this))
 			{
-				if(TraitementJoueur.JETON_J1 != 0)
-					TraitementJoueur.JETON_J1--;
-				checkBy = TraitementJoueur.JOUEUR1; // Joueur 1
+				if(TraitementJoueur.JOUEUR_ACTUEL == TraitementJoueur.JOUEUR1)
+				{
+					if(TraitementJoueur.JETON_J1 != 0)
+						TraitementJoueur.JETON_J1--;
+					checkBy = TraitementJoueur.JOUEUR1; // Joueur 1
+				}
+				else
+				{
+					if(TraitementJoueur.JETON_J2 != 0)
+						TraitementJoueur.JETON_J2--;
+					checkBy = TraitementJoueur.JOUEUR2; // Joueur 2
+				}
+				
+				window.updateValueLabel(TraitementJoueur.JOUEUR_ACTUEL);
+				
+				TraitementJoueur.JOUEUR_ACTUEL = (TraitementJoueur.JOUEUR_ACTUEL == TraitementJoueur.JOUEUR1 ? TraitementJoueur.JOUEUR2 : TraitementJoueur.JOUEUR1);
+				isChecked = true;
+				GomokuJeu.nbTour++;
+				this.repaint();
 			}
-			else
-			{
-				if(TraitementJoueur.JETON_J2 != 0)
-					TraitementJoueur.JETON_J2--;
-				checkBy = TraitementJoueur.JOUEUR2; // Joueur 2
-			}
-			
-			window.updateValueLabel(TraitementJoueur.JOUEUR_ACTUEL);
-
-			TraitementJoueur.JOUEUR_ACTUEL = (TraitementJoueur.JOUEUR_ACTUEL == TraitementJoueur.JOUEUR1 ? TraitementJoueur.JOUEUR2 : TraitementJoueur.JOUEUR1);
-			isChecked = true;
-			this.repaint();
 	}
 	
 	public boolean isChecked()
 	{
 		return isChecked;
+	}
+	
+	public int getCordX()
+	{
+		return cord[0];
+	}
+	
+	public int getCordY()
+	{
+		return cord[1];
 	}
 
 	@Override
