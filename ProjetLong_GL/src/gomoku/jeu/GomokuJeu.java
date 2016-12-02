@@ -30,7 +30,7 @@ public class GomokuJeu
 			{
 				for(int ii = -1; ii < 2; ii++)
 				{
-					System.out.println("salut");
+					System.out.println("salut2");
 				}
 			}
 		}
