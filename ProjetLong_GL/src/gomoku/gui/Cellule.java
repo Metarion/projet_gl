@@ -55,7 +55,7 @@ public class Cellule extends JPanel implements MouseListener
 	public void mouseClicked(MouseEvent e) 
 	{		
 			GomokuJeu.verificationPlacement(this);
-			/*if(TraitementJoueur.JOUEUR_ACTUEL == TraitementJoueur.JOUEUR1)
+			if(TraitementJoueur.JOUEUR_ACTUEL == TraitementJoueur.JOUEUR1)
 			{
 				if(TraitementJoueur.JETON_J1 != 0)
 					TraitementJoueur.JETON_J1--;
@@ -72,7 +72,7 @@ public class Cellule extends JPanel implements MouseListener
 			
 			TraitementJoueur.JOUEUR_ACTUEL = (TraitementJoueur.JOUEUR_ACTUEL == TraitementJoueur.JOUEUR1 ? TraitementJoueur.JOUEUR2 : TraitementJoueur.JOUEUR1);
 			isChecked = true;
-			this.repaint();*/
+			this.repaint();
 	}
 	
 	public boolean isChecked()

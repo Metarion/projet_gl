@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import gomoku.jeu.GomokuJeu;
+import gomoku.regles.Constantes;;
 
 @SuppressWarnings("serial")
 public class Menu extends JFrame {
@@ -31,10 +32,18 @@ public class Menu extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//Menu.this.setVisible(false);
-				new GomokuJeu();
+				new GomokuJeu(0);
 			}
 		});
 		JButton boutJIA = new JButton("Joueur VS Ia");
+		boutJIA.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Menu.this.setVisible(false);
+				new GomokuJeu(1);
+			}
+		});
 		JPanel pan = new JPanel(new GridLayout(2, 1));
 		pan.add(boutJJ);
 		pan.add(boutJIA);

@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import gomoku.jeu.TraitementJoueur;
+import gomoku.regles.Constantes;
 
 public class GomokuGui extends JFrame 
 {	
@@ -16,14 +17,18 @@ public class GomokuGui extends JFrame
 	private JLabel lb_jeton_j2;
 	private JLabel lb_tour_joueur;
 
-	public GomokuGui()
+	public GomokuGui(int hia)
 	{	
 		super("Gomoku");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());	
-
 		lb_jeton_j1 = new JLabel("Joueur 1 : " + TraitementJoueur.JETON_J1 + " jeton(s) restant");
-		lb_jeton_j2 = new JLabel("Joueur 2 : " + TraitementJoueur.JETON_J2 + " jeton(s) restant");
+		if(hia == Constantes.HUMAN){
+			lb_jeton_j2 = new JLabel("Joueur 2 : " + TraitementJoueur.JETON_J2 + " jeton(s) restant");
+		} else {
+			lb_jeton_j2 = new JLabel("Ordinateur : " + TraitementJoueur.JETON_J2 + " jeton(s) restant");
+		}
+
 		lb_tour_joueur = new JLabel("Tour : joueur " + (TraitementJoueur.JOUEUR_ACTUEL == TraitementJoueur.JOUEUR1 ? TraitementJoueur.JOUEUR1 : TraitementJoueur.JOUEUR2));
 		lb_tour_joueur.setHorizontalAlignment(JLabel.CENTER);
 		JPanel p_info = new JPanel();
@@ -39,7 +44,7 @@ public class GomokuGui extends JFrame
 	public Cellule[][] initialiserPlateau(int size)
 	{
 		ArrierePlan ap = new ArrierePlan();
-		ap.setPreferredSize(new Dimension(size * 40, size*40));
+		//ap.setPreferredSize(new Dimension(size * 40, size*40));
 		ap.setLayout(new GridBagLayout());
 		GridBagConstraints gc = new GridBagConstraints();
 

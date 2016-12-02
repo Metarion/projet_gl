@@ -6,16 +6,16 @@ import gomoku.regles.Constantes;
 
 public class GomokuJeu 
 {
-	public static void main(String[] args)
+	/*public static void main(String[] args)
 	{
 		new GomokuJeu();
-	}
+	}*/
 	
 	private static Cellule[][] tableau_cellule;
 	
-	public GomokuJeu()
+	public GomokuJeu(int hia)
 	{
-		GomokuGui window = new GomokuGui();
+		GomokuGui window = new GomokuGui(hia);
 		tableau_cellule = window.initialiserPlateau(Constantes.SIZE);
 		window.setVisible(true);
 	}
