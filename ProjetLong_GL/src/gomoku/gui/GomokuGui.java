@@ -13,6 +13,7 @@ import javax.swing.BorderFactory;
 import javax.swing.border.BevelBorder;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import gomoku.jeu.TraitementJoueur;
 import gomoku.regles.Constantes;
@@ -28,7 +29,7 @@ public class GomokuGui extends JFrame implements WindowListener
 	public GomokuGui(int hia, Menu menu)
 	{	
 		super("Gomoku");
-
+		JOptionPane.showMessageDialog(this, "salut");
 		this.menu = menu;
 		this.addWindowListener(this);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
