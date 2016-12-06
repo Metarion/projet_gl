@@ -1,10 +1,10 @@
 package gomoku.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -98,6 +98,8 @@ public class Menu extends JFrame {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(10, 10, 10, 10);
 		JPanel pan = new JPanel(new GridBagLayout());
+		this.getContentPane().setBackground(new Color(255,189,79));
+		pan.setBackground(new Color(255,189,79));
 		gbc.gridx=0;
 		gbc.gridy=0;
 		pan.add(boutJJ, gbc);
