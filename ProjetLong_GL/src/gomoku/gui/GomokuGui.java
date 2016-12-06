@@ -29,7 +29,6 @@ public class GomokuGui extends JFrame implements WindowListener
 	public GomokuGui(int hia, Menu menu)
 	{	
 		super("Gomoku");
-		JOptionPane.showMessageDialog(this, "salut");
 		this.menu = menu;
 		this.addWindowListener(this);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
