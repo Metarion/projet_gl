@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 
 import gomoku.jeu.GomokuJeu;
 import gomoku.jeu.TraitementJoueur;
+import gomoku.regles.Constantes;
 
 @SuppressWarnings("serial")
 public class Menu extends JFrame {
@@ -36,10 +37,10 @@ public class Menu extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Menu.this.setVisible(false);
-				TraitementJoueur.resetValue();
-				GomokuJeu jeu = new GomokuJeu(0, Menu.this);
-				Menu.this.setVisible(false);
+				Constantes.TYPE_ADVERSAIRE = Constantes.HUMAN;
+				GomokuJeu jeu = new GomokuJeu();
+				jeu.lancerJeu();
+				Menu.this.dispose();
 			}
 		});
 		
@@ -49,10 +50,10 @@ public class Menu extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Menu.this.setVisible(false);
-				TraitementJoueur.resetValue();
-				GomokuJeu jeu = new GomokuJeu(1, Menu.this);
-				Menu.this.setVisible(false);
+				Constantes.TYPE_ADVERSAIRE = Constantes.COMPUTER;
+				GomokuJeu jeu = new GomokuJeu();
+				jeu.lancerJeu();
+				Menu.this.dispose();
 			}
 		});
 		

@@ -3,10 +3,10 @@ package gomoku.jeu;
 public class TraitementJoueur 
 {
     /** Constante pour symboliser le nombre de jeton du joueur1 */
-    public static int JETON_J1 = 5;
+    public static int JETON_J1 = 60;
     
     /** Constante pour symboliser le nombre de jeton du joueur2 */
-    public static int JETON_J2 = 5;
+    public static int JETON_J2 = 60;
     
 	/** constante pour symboliser le joueur2 */
     public static int JOUEUR_ACTUEL = 1;
@@ -20,7 +20,7 @@ public class TraitementJoueur
     public static void resetValue()
     {
     	JOUEUR_ACTUEL = JOUEUR1;
-    	JETON_J1 = JETON_J2 = 5;
+    	JETON_J1 = JETON_J2 = 60;
     }
 	
 }

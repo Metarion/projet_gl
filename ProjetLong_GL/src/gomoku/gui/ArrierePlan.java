@@ -6,7 +6,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+
 import javax.swing.JPanel;
+
 import gomoku.regles.Constantes;
 
 public class ArrierePlan extends JPanel
@@ -18,7 +20,7 @@ public class ArrierePlan extends JPanel
 	{
 		this.setLayout(new BorderLayout());
 		this.setPreferredSize(new Dimension(Constantes.HP, Constantes.LP));
-		this.setBackground(Color.orange);
+		this.setBackground(new Color(255,189,79));
 		hCel = (Constantes.HP) / Constantes.SIZE;
 		lCel = (Constantes.LP) / Constantes.SIZE;
 	}

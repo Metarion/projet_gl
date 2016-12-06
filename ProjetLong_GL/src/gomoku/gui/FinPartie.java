@@ -14,48 +14,57 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class FinPartie extends JFrame {
-	public FinPartie(GomokuGui window, String text) {
+import gomoku.jeu.GomokuJeu;
+
+public class FinPartie extends JFrame 
+{
+	public FinPartie(GomokuGui window, String text)
+	{
 		super("Fin de partie");
-
+		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(new Dimension(300, 100));
+		this.setSize(new Dimension(300,100));
 		this.setLocationRelativeTo(null);
-
+		
 		JPanel contentPane = new JPanel();
 		contentPane.setLayout(new BorderLayout());
 
 		JLabel lb_text = new JLabel(text, SwingConstants.CENTER);
 		lb_text.setSize(new Dimension(this.getWidth(), 30));
-
+		
 		JButton bt_rejouer = new JButton("Rejouer");
-		bt_rejouer.addActionListener(new ActionListener() {
-
+		bt_rejouer.addActionListener(new ActionListener()
+		{
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) 
+			{
+				window.closeWindow();
+				new GomokuJeu().lancerJeu();
 				FinPartie.this.dispose();
 			}
-
 		});
 		JButton bt_retourMenuPrincipale = new JButton("Retour au menu");
-		bt_retourMenuPrincipale.addActionListener(new ActionListener() {
+		bt_retourMenuPrincipale.addActionListener(new ActionListener()
+		{
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) 
+			{
 				window.closeWindow();
 				FinPartie.this.dispose();
+				new Menu();
 			}
 
 		});
 
-		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.insets = new Insets(4, 4, 4, 4);
-		JPanel p_bt = new JPanel();
-		p_bt.setLayout(new GridBagLayout());
-		p_bt.add(bt_rejouer, gbc);
-		p_bt.add(bt_retourMenuPrincipale, gbc);
-		contentPane.add(p_bt, BorderLayout.CENTER);
-		contentPane.add(lb_text, BorderLayout.NORTH);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(4,4,4,4);
+        JPanel p_bt = new JPanel();
+        p_bt.setLayout(new GridBagLayout());
+        p_bt.add(bt_rejouer, gbc);
+        p_bt.add(bt_retourMenuPrincipale, gbc);
+        contentPane.add(p_bt, BorderLayout.CENTER);
+        contentPane.add(lb_text, BorderLayout.NORTH);
 		this.setContentPane(contentPane);
 		this.setVisible(true);
 	}
