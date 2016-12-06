@@ -4,11 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.JPanel;
 
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import gomoku.jeu.GomokuJeu;
 import gomoku.jeu.TraitementJoueur;
-import gomoku.regles.Constantes;
 
 public class Cellule extends JPanel implements MouseListener
 {
@@ -16,26 +16,26 @@ public class Cellule extends JPanel implements MouseListener
 	private int checkBy;
 	/** Si la cellule a déjà était séléctionné par un joueur */
 	private boolean isChecked = false;
-	
+
 	private int cord [];
-	
+
 	private GomokuGui window;
-	
+
 	Cellule(GomokuGui window, int[] cord)
 	{
 		this.window = window;
 		this.cord = cord;
 		// Permet d'avoir un fond transparent afin de pouvoir voir la plateau à travers les cellules
 		this.setBackground(new Color(0,0,0,0));
-				
+
 		this.addMouseListener(this);
 	}
-	
+
 	@Override
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);	
-		
+
 		if(isChecked)
 		{
 			if(checkBy == TraitementJoueur.JOUEUR1)
@@ -53,41 +53,39 @@ public class Cellule extends JPanel implements MouseListener
 
 	@Override
 	public void mouseClicked(MouseEvent e) 
-	{		
-			if(GomokuJeu.verificationPlacement(this))
-			{
-				if(TraitementJoueur.JOUEUR_ACTUEL == TraitementJoueur.JOUEUR1)
-				{
-					if(TraitementJoueur.JETON_J1 != 0)
-						TraitementJoueur.JETON_J1--;
-					checkBy = TraitementJoueur.JOUEUR1; // Joueur 1
-				}
-				else
-				{
-					if(TraitementJoueur.JETON_J2 != 0)
-						TraitementJoueur.JETON_J2--;
-					checkBy = TraitementJoueur.JOUEUR2; // Joueur 2
-				}
-				
-				window.updateValueLabel(TraitementJoueur.JOUEUR_ACTUEL);
-				
-				TraitementJoueur.JOUEUR_ACTUEL = (TraitementJoueur.JOUEUR_ACTUEL == TraitementJoueur.JOUEUR1 ? TraitementJoueur.JOUEUR2 : TraitementJoueur.JOUEUR1);
-				isChecked = true;
-				GomokuJeu.nbTour++;
-				this.repaint();
-			}
+	{	
+		GomokuJeu jeu = new GomokuJeu();
+		
+		jeu.joueurJoue(this, window);
+		
+		window.updateValueLabel();
+	}
+
+	public int checkBy()
+	{
+		return this.checkBy;
 	}
 	
+	public void setCheckBy(int joueur)
+	{
+		this.checkBy = joueur;
+	}
+
 	public boolean isChecked()
 	{
 		return isChecked;
 	}
 	
+	public void setCheck()
+	{
+		this.isChecked = true;
+	}
+
 	public int getCordX()
 	{
 		return cord[0];
 	}
-	
+
 	public int getCordY()
 	{
 		return cord[1];
@@ -95,21 +93,21 @@ public class Cellule extends JPanel implements MouseListener
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		
+
 	}
 }

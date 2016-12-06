@@ -4,19 +4,18 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
 import gomoku.jeu.GomokuJeu;
-import gomoku.regles.Constantes;;
 
 @SuppressWarnings("serial")
-public class Menu extends JFrame {
-	public Menu() {
+public class Menu extends JFrame 
+{
+	public Menu() 
+	{
 		this.setTitle("Menu Principal");
 		this.setSize(700, 500);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,20 +27,22 @@ public class Menu extends JFrame {
 		this.getContentPane().add(lab, BorderLayout.NORTH);
 		JButton boutJJ = new JButton("Joueur VS Joueur");
 		boutJJ.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//Menu.this.setVisible(false);
-				new GomokuJeu(0);
+				new GomokuJeu(0, Menu.this);
+				Menu.this.setVisible(false);
 			}
 		});
 		JButton boutJIA = new JButton("Joueur VS Ia");
 		boutJIA.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//Menu.this.setVisible(false);
-				new GomokuJeu(1);
+				new GomokuJeu(1, Menu.this);
+				Menu.this.setVisible(false);
 			}
 		});
 		JPanel pan = new JPanel(new GridLayout(2, 1));
@@ -51,12 +52,6 @@ public class Menu extends JFrame {
 		this.setVisible(true);
 	}
 
-/*	public void actionPerformed(ActionEvent arg0) {
-
-		  if(arg0.getSource() == bout)
-
-		}
-	*/
 	public static void main(String[] args) {
 		new Menu();
 	}
