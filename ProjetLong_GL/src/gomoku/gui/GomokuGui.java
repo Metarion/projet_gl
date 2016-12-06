@@ -10,32 +10,30 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.border.BevelBorder;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
+
 import gomoku.jeu.TraitementJoueur;
 import gomoku.regles.Constantes;
 
-public class GomokuGui extends JFrame implements WindowListener
-{	
+public class GomokuGui extends JFrame implements WindowListener {
 	private Menu menu;
 
 	private JLabel lb_jeton_j1;
 	private JLabel lb_jeton_j2;
 	private JLabel lb_tour_joueur;
 
-	public GomokuGui(int hia, Menu menu)
-	{	
+	public GomokuGui(int hia, Menu menu) {
 		super("Gomoku");
-		
+
 		this.menu = menu;
 		this.addWindowListener(this);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.setLayout(new BorderLayout());	
+		this.setLayout(new BorderLayout());
 		lb_jeton_j1 = new JLabel("Joueur 1 : " + TraitementJoueur.JETON_J1 + " jeton(s) restant");
-		if(hia == Constantes.HUMAN){
+		if (hia == Constantes.HUMAN) {
 			lb_jeton_j2 = new JLabel("Joueur 2 : " + TraitementJoueur.JETON_J2 + " jeton(s) restant");
 		} else {
 			lb_jeton_j2 = new JLabel("Ordinateur : " + TraitementJoueur.JETON_J2 + " jeton(s) restant");
@@ -55,8 +53,7 @@ public class GomokuGui extends JFrame implements WindowListener
 		this.getContentPane().add(p_info, BorderLayout.NORTH);
 	}
 
-	public Cellule[][] initialiserPlateau(int size)
-	{
+	public Cellule[][] initialiserPlateau(int size) {
 		ArrierePlan ap = new ArrierePlan();
 		ap.setLayout(new GridBagLayout());
 		GridBagConstraints gc = new GridBagConstraints();
@@ -75,12 +72,11 @@ public class GomokuGui extends JFrame implements WindowListener
 		gc.gridy = 0;
 
 		Cellule[][] tableau_cellule = new Cellule[size][size];
-		for(int i = 0; i < size; i++)
-			for(int ii = 0; ii < size; ii++)
-			{
+		for (int i = 0; i < size; i++)
+			for (int ii = 0; ii < size; ii++) {
 				gc.gridx = ii;
 				gc.gridy = i;
-				int cord [] = {ii,i};
+				int cord[] = { ii, i };
 				tableau_cellule[ii][i] = new Cellule(this, cord);
 				ap.add(tableau_cellule[ii][i], gc);
 			}
@@ -88,14 +84,13 @@ public class GomokuGui extends JFrame implements WindowListener
 		this.getContentPane().add(ap, BorderLayout.CENTER);
 
 		this.pack();
-		
+
 		this.setLocationRelativeTo(null);
 
 		return tableau_cellule;
 	}
 
-	public void updateValueLabel()
-	{
+	public void updateValueLabel() {
 		lb_jeton_j1.setText("Joueur 1 : " + TraitementJoueur.JETON_J1 + " jeton(s) restant");
 		lb_jeton_j2.setText("Joueur 2 : " + TraitementJoueur.JETON_J2 + " jeton(s) restant");
 
@@ -104,20 +99,17 @@ public class GomokuGui extends JFrame implements WindowListener
 		this.validate();
 	}
 
-	public void closeWindow()
-	{
+	public void closeWindow() {
 		this.dispose();
 	}
 
 	@Override
-	public void windowClosed(WindowEvent e) 
-	{
+	public void windowClosed(WindowEvent e) {
 		menu.setVisible(true);
 	}
 
 	@Override
-	public void windowClosing(WindowEvent e) 
-	{
+	public void windowClosing(WindowEvent e) {
 
 	}
 
