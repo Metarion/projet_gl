@@ -16,5 +16,11 @@ public class TraitementJoueur
     
     /** constante pour symboliser le joueur2 */
     public final static int JOUEUR2 = 2;
+    
+    public static void resetValue()
+    {
+    	JOUEUR_ACTUEL = JOUEUR1;
+    	JETON_J1 = JETON_J2 = 5;
+    }
 	
 }

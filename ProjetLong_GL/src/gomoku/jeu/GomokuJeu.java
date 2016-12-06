@@ -18,6 +18,7 @@ public class GomokuJeu
 	public GomokuJeu(int hia, Menu menu)
 	{
 		GomokuGui window = new GomokuGui(hia, menu);
+		nbTour = 0;
 		tableau_cellule = window.initialiserPlateau(Constantes.SIZE);
 		window.setVisible(true);
 	}

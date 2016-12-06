@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import gomoku.jeu.GomokuJeu;
+import gomoku.jeu.TraitementJoueur;
+import gomoku.regles.Constantes;
 
 @SuppressWarnings("serial")
 public class Menu extends JFrame 
@@ -31,7 +33,8 @@ public class Menu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//Menu.this.setVisible(false);
-				new GomokuJeu(0, Menu.this);
+				TraitementJoueur.resetValue();
+				GomokuJeu jeu = new GomokuJeu(0, Menu.this);
 				Menu.this.setVisible(false);
 			}
 		});
@@ -41,7 +44,8 @@ public class Menu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//Menu.this.setVisible(false);
-				new GomokuJeu(1, Menu.this);
+				TraitementJoueur.resetValue();
+				GomokuJeu jeu = new GomokuJeu(1, Menu.this);
 				Menu.this.setVisible(false);
 			}
 		});
