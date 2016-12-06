@@ -3,13 +3,13 @@ package gomoku.regles;
 public class Constantes 
 {
 	/** constante qui va définir la taille de la grille */
-	public final static int SIZE = 19;
+	public static int SIZE = 19;
 
 	/** hauteur du plateau */
-	public final static int HP = SIZE*40;
+	public static int HP = SIZE*40;
 	
 	/** largeur du plateau */
-	public final static int LP = SIZE*40;
+	public static int LP = SIZE*40;
 	
 	/** constante pour symboliser le joueur humain */
     public final static int HUMAN = 0;
